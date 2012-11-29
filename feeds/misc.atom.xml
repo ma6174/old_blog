@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>小码哥的新博客</title><link href="http://ma6174.github.com/" rel="alternate"></link><link href="http://ma6174.github.com/feeds/misc.atom.xml" rel="self"></link><id>http://ma6174.github.com/</id><updated>2012-11-10T17:12:22+08:00</updated><entry><title>First blog</title><link href="http://ma6174.github.com/first-blog.html" rel="alternate"></link><updated>2012-11-10T17:12:22+08:00</updated><author><name>ma6174</name></author><id>tag:ma6174.github.com,2012-11-10:first-blog.html</id><summary type="html">&lt;p&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>小码哥的新博客</title><link href="http://ma6174.github.com/" rel="alternate"></link><link href="http://ma6174.github.com/feeds/misc.atom.xml" rel="self"></link><id>http://ma6174.github.com/</id><updated>2012-11-29T09:42:42+08:00</updated><entry><title>操作系统词汇在线测试平台的实现</title><link href="http://ma6174.github.com/cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html" rel="alternate"></link><updated>2012-11-29T09:42:42+08:00</updated><author><name>ma6174</name></author><id>tag:ma6174.github.com,2012-11-29:cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html</id><summary type="html">&lt;p&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;&lt;/p&gt;
+&lt;h3&gt;开发起因&lt;/h3&gt;
+&lt;p&gt;前段时间提到我这个小草鸟破解了老师的软件,然后招到各位大牛的批评,好吧,我只能说我的水平还不到家。在课堂上展示了一下我的“破解”成果，专门做了一个幻灯片 &lt;a href="http://www.rvl.io/ma6174/test"&gt;http://www.rvl.io/ma6174/test&lt;/a&gt;，演示了一下幻灯片中提到的几种“破解”方式。很出乎我的意料，现场反映还是挺好的。老师也承诺发一个大奖，感觉老师有种谷歌的风范，谷歌曾经花重金请黑客破解它的浏览器，当然这是为了更好的改进它的浏览器，提升浏览器的安全性。由于我利用谢老师的软件的数据库没有密码的漏洞，实现提升权限的操作，这样系统就非常不安全。然后老师就修改了它的软件，虽然还是没有加密，可以随便修改，但是修改后程序能检测出来，然后就弹出错误消息禁止登录。当然实现这个功能不难，我不知道老师是怎么实现的，其中有个简单的方法就是计算数据库的md5,只要有任何的改动都能检测出来。其实数据库放在本地，使用完全独立客户端本身就是不安全的，如果是在浏览器上的话就不一样了，总结了一下，web版的有如下优点：
+- 不用安装任何客户端软件，打开浏览器就能在线测试
+- 数据库放在云端，增加安全性
+- 基于web，跨平台
+- 更方便地统计所有用户的成绩
+- 方便用户获取自己的排名&lt;/p&gt;
+&lt;h3&gt;需求分析&lt;/h3&gt;
+&lt;p&gt;需要实现的功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;前端：
+    &amp;gt; 首页：选择题目难度&lt;br /&gt;
+      测试页面：展示题目，提供输入框，显示剩余时间，时间到自动提交，防止复制，防止粘贴&lt;br /&gt;
+      成绩及答案页面：显示得分，排名，以及错题的正确答案&lt;br /&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;后台：
+    &amp;gt; 数据库部分：题目入库，题目检索，获取答案，成绩入库，获取排名&lt;br /&gt;
+      web页面部分：为测试页面提供题目，时间等数据，接收用户数据，判断用户答案是否正确，计算成绩，返回排名与正确答案,错误处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;实现方案：&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;后台编程语言：python。因为python是一门全能语言，既能处理数据库应用，还能方便得处理事物联系，比如计算成绩。web模块也很强大&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;前台实现：主要是html，通过css美化，用javascript来实现计时和自动提交动作。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;web框架：web.py。这是一个轻量级的web框架，可以很方便地构建小型web服务器并对外提供服务，一个类就是一个页面，每个页面有POST和GET两种方法。可以很方便获取用户输入&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;数据库：sqlite数据库，因为这个程序用到的数据很少，sqlite数据库采用单个文件来存放，管理方便，python自带其模块，使用也很简单，查询速度方面也是比较给力的。&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;模板引擎：jinja2。jinja2模板可以很方便的嵌入到html中，还可以实现一些判断，循环等操作来动态生成html代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;具体实现&lt;/h3&gt;
+&lt;p&gt;首先是题目入库，连接数据库，建表，从文本文件读取题目数据写入数据库。当web服务器启动后，初始页一个静态页面，可以选择题目难度，通过GET方法告诉服务器题目难度，然后服务器从数据库里面随机选出6个题目，根据难度和空数确定时间，通过jinja2模板填充页面数据，并返回测试页面。测试者开始做题，时间到或者测试者手动提交都会将测试者的答案提交到服务器，然后服务器对答案依次进行判断，并统计正确个数和错误答案，根据正确个数确定成绩，在根据成绩获取在系统里面的排名，一并将上面的信息返回。后台自动保存用户的成绩信息。测试者可以选择再测一次或者重新选择题目难度。&lt;/p&gt;
+&lt;h3&gt;程序代码&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://github.com/ma6174/osweb"&gt;http://github.com/ma6174/osweb&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;演示地址&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://osweb.me.cc/"&gt;http://osweb.me.cc/&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;存在问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在成绩页面点击浏览器后退按钮页面不能刷新&lt;/li&gt;
+&lt;li&gt;排名页面只给出排名第几，没有具体排名列表&lt;/li&gt;
+&lt;li&gt;页面还需要进一步美化&lt;/li&gt;
+&lt;li&gt;没有提供后台管理页面&lt;/li&gt;
+&lt;li&gt;如果用户禁用javascript则不能正常计时和自动提交（后台可以检测出来）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;其他&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;前台美工：zcz&lt;/li&gt;
+&lt;li&gt;后台实现：ma6174&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="操作系统"></category><category term="在线测试"></category></entry><entry><title>First blog</title><link href="http://ma6174.github.com/first-blog.html" rel="alternate"></link><updated>2012-11-11T13:57:13+08:00</updated><author><name>ma6174</name></author><id>tag:ma6174.github.com,2012-11-11:first-blog.html</id><summary type="html">&lt;p&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;&lt;/p&gt;
 &lt;h1&gt;标题1&lt;/h1&gt;
 &lt;p&gt;这是一篇测试文章！&lt;/p&gt;
 &lt;ul&gt;
