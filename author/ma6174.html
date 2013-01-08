@@ -182,6 +182,110 @@
             </article></li>
         
         
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html" rel="bookmark"
+                           title="Permalink to 给python交互式命令行增加自动补全和命令历史">给python交互式命令行增加自动补全和命令历史</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-01-05T10:12:50.953722">
+                六 05 一月 2013
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
+        </address>
+        
+<p>In <a href=".././category/misc.html">misc</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/zi-dong-bu-quan.html">自动补全</a><a href=".././tag/ming-ling.html">命令</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>考完试了，开始研究《python高级编程》</p>
+<p>用过zsh的同学肯定对其自动补全功能印象深刻，通过简单的定制python交互式命令行也能实现类似功能，具体操作如下：</p>
+<ol>
+<li>在用户目录下新建".pythonstartup"文件，写入以下内容：</li>
+</ol>
+<div class="codehilite"><pre><span class="c"># python startup file</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">import</span> <span class="nn">rlcompleter</span>
+<span class="kn">import</span> <span class="nn">atexit</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c">#tab completion</span>
+<span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">&#39;tab: complete&#39;</span><span class="p">)</span>
+<span class="c">#history file</span>
+<span class="n">historyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;HOME&#39;</span><span class="p">],</span><span class="s">&#39;.pythonstartup&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">readline</span><span class="o">.</span><span class="n">read_history_file</span><span class="p">(</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">readline</span><span class="o">.</span><span class="n">write_history_file</span><span class="p">,</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">os ...</span></pre></div>
+                <a class="readmore" href=".././gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href=".././pythondie-dai-qi-he-sheng-cheng-qi.html" rel="bookmark"
+                           title="Permalink to python迭代器和生成器">python迭代器和生成器</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-01-06T14:21:59.897629">
+                日 06 一月 2013
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
+        </address>
+        
+<p>In <a href=".././category/misc.html">misc</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/die-dai-qi-sheng-cheng-qi.html">迭代器，生成器</a></p>
+
+
+</footer><!-- /.post-info -->
+                <h3>列表推导：</h3>
+<p>生成一个列表：<code>[0,2,4,6,8]</code></p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>enumerate</h3>
+<div class="codehilite"><pre><span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+
+<p>上面的代码将生成下面的列表：
+<code>['0:one','1:two','2:three']</code></p>
+<h3>迭代器：</h3>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="nb">iter ...</span></pre></div>
+                <a class="readmore" href=".././pythondie-dai-qi-he-sheng-cheng-qi.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
             </ol><!-- /#posts-list -->
             
                 

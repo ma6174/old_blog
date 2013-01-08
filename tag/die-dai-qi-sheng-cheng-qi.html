@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>小码哥的新博客 - misc</title>
+        <title>小码哥的新博客 - 迭代器，生成器</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
         
@@ -31,7 +31,7 @@
                 
                 
                 
-                    <li class="active"><a href=".././category/misc.html">misc</a></li>
+                    <li ><a href=".././category/misc.html">misc</a></li>
                 
                 </ul></nav>
         </header><!-- /#banner -->
@@ -290,176 +290,20 @@
 </pre></div>
                 </article>
                 
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html" rel="bookmark"
-                           title="Permalink to 给python交互式命令行增加自动补全和命令历史">给python交互式命令行增加自动补全和命令历史</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-01-05T10:12:50.953722">
-                六 05 一月 2013
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
-        </address>
-        
-<p>In <a href=".././category/misc.html">misc</a>. </p>
-<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/zi-dong-bu-quan.html">自动补全</a><a href=".././tag/ming-ling.html">命令</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p>考完试了，开始研究《python高级编程》</p>
-<p>用过zsh的同学肯定对其自动补全功能印象深刻，通过简单的定制python交互式命令行也能实现类似功能，具体操作如下：</p>
-<ol>
-<li>在用户目录下新建".pythonstartup"文件，写入以下内容：</li>
-</ol>
-<div class="codehilite"><pre><span class="c"># python startup file</span>
-<span class="kn">import</span> <span class="nn">readline</span>
-<span class="kn">import</span> <span class="nn">rlcompleter</span>
-<span class="kn">import</span> <span class="nn">atexit</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="c">#tab completion</span>
-<span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">&#39;tab: complete&#39;</span><span class="p">)</span>
-<span class="c">#history file</span>
-<span class="n">historyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;HOME&#39;</span><span class="p">],</span><span class="s">&#39;.pythonstartup&#39;</span><span class="p">)</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">readline</span><span class="o">.</span><span class="n">read_history_file</span><span class="p">(</span><span class="n">historyfile</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="k">pass</span>
-<span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">readline</span><span class="o">.</span><span class="n">write_history_file</span><span class="p">,</span><span class="n">historyfile</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">os ...</span></pre></div>
-                <a class="readmore" href=".././gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html">read more</a>
-                
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html" rel="bookmark"
-                           title="Permalink to 操作系统词汇在线测试平台的实现">操作系统词汇在线测试平台的实现</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-29T09:42:42.412321">
-                四 29 十一月 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
-        </address>
-        
-<p>In <a href=".././category/misc.html">misc</a>. </p>
-<p>tags: <a href=".././tag/cao-zuo-xi-tong.html">操作系统</a><a href=".././tag/zai-xian-ce-shi.html">在线测试</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p><head><meta charset="UTF-8"></head></p>
-<h3>开发起因</h3>
-<p>前段时间提到我这个小草鸟破解了老师的软件,然后招到各位大牛的批评,好吧,我只能说我的水平还不到家。在课堂上展示了一下我的“破解”成果，专门做了一个幻灯片 <a href="http://www.rvl.io/ma6174/test">http://www.rvl.io/ma6174/test</a>，演示了一下幻灯片中提到的几种“破解”方式。很出乎我的意料，现场反映还是挺好的。老师也承诺发一个大奖，感觉老师有种谷歌的风范，谷歌曾经花重金请黑客破解它的浏览器，当然这是为了更好的改进它的浏览器，提升浏览器的安全性。由于我利用谢老师的软件的数据库没有密码的漏洞，实现提升权限的操作，这样系统就非常不安全。然后老师就修改了它的软件，虽然还是没有加密，可以随便修改，但是修改后程序能检测出来，然后就弹出错误消息禁止登录。当然实现这个功能不难，我不知道老师是怎么实现的，其中有个简单的方法就是计算数据库的md5,只要有任何的改动都能检测出来。其实数据库放在本地，使用完全独立客户端本身就是不安全的，如果是在浏览器上的话就不一样了，总结了一下，web版的有如下优点：
-- 不用安装任何客户端软件，打开浏览器就能在线测试
-- 数据库放在云端，增加安全性
-- 基于web，跨平台
-- 更方便地统计所有用户的成绩
-- 方便用户获取自己的排名 ...</p>
-                <a class="readmore" href=".././cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html">read more</a>
-                
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                    <h1><a href=".././first-blog.html" rel="bookmark"
-                           title="Permalink to First blog">First blog</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-11T13:57:13.905562">
-                日 11 十一月 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
-        </address>
-        
-<p>In <a href=".././category/misc.html">misc</a>. </p>
-<p>tags: <a href=".././tag/tags.html">tags</a></p>
-
-
-</footer><!-- /.post-info -->
-                <p><head><meta charset="UTF-8"></head></p>
-<h1>标题1</h1>
-<p>这是一篇测试文章！</p>
-<ul>
-<li>列表1</li>
-<li>列表2</li>
-<li>列表3</li>
-</ul>
-<h3>标题3</h3>
-<p>正文2</p>
-<blockquote>
-<p>缩进块aaaaaaa</p>
-</blockquote>
-<h3>代码</h3>
-<div class="codehilite"><pre><span class="c">#include &lt;stdio.h&gt;</span>
-<span class="n">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="nb">printf</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p><a href="https://note.sdo.com/u/ma6174/n/M5cEN~k08XowLX0Ts000vQ">链接到我的麦库</a></p>
-<p><img alt="一张图片" src="../static/rss.jpg" /></p>
-                <a class="readmore" href=".././first-blog.html">read more</a>
-                
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-            </ol><!-- /#posts-list -->
-            
-                
+                    
 <p class="paginator">
     
     Page 1 / 1
     
 </p>
 
+                
+            </aside><!-- /#featured -->
+            
+        
+        
+        
+            </ol><!-- /#posts-list -->
             
             </section><!-- /#content -->
         

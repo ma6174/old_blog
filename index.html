@@ -43,8 +43,329 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html">操作系统词汇在线测试平台的实现</a></h1> 
+                    <h1 class="entry-title"><a href="./pythondie-dai-qi-he-sheng-cheng-qi.html">python迭代器和生成器</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2013-01-06T14:21:59.897629">
+                日 06 一月 2013
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ma6174.html">ma6174</a>
+        </address>
+        
+<p>In <a href="./category/misc.html">misc</a>. </p>
+<p>tags: <a href="./tag/python.html">python</a><a href="./tag/die-dai-qi-sheng-cheng-qi.html">迭代器，生成器</a></p>
+
+
+</footer><!-- /.post-info --><h3>列表推导：</h3>
+<p>生成一个列表：<code>[0,2,4,6,8]</code></p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>enumerate</h3>
+<div class="codehilite"><pre><span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+    <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">:</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+
+<p>上面的代码将生成下面的列表：
+<code>['0:one','1:two','2:three']</code></p>
+<h3>迭代器：</h3>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">i</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="s">&#39;a&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">i</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="s">&#39;b&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">i</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="s">&#39;c&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">i</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+      <span class="n">File</span> <span class="s">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">StopIteration</span>
+<span class="o">&gt;&gt;&gt;</span> 
+</pre></div>
+
+
+<p>遍历完毕将产生 StopIteration 异常</p>
+<h3>生成器</h3>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">fibonacci</span><span class="p">():</span>
+<span class="o">...</span>     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="o">...</span>     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="o">...</span>         <span class="k">yield</span> <span class="n">b</span>
+<span class="o">...</span>         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fib</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fib</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fib</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">fib</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">fib</span><span class="o">.</span><span class="n">next</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">233</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+
+
+<h3>协同程序</h3>
+<p>协同不同于多线程，线程是抢占式的，下面的例子可以说明这点：</p>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">#coding=utf-8</span>
+<span class="c">#协同</span>
+<span class="kn">import</span> <span class="nn">multitask</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">conroutine_1</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;c1&#39;</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">conroutine_2</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;c2&#39;</span>
+        <span class="k">yield</span> <span class="n">i</span>
+
+<span class="k">def</span> <span class="nf">conroutine_3</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;c3&#39;</span>
+
+<span class="k">def</span> <span class="nf">conroutine_4</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;c4&#39;</span>
+
+<span class="k">print</span> <span class="s">&quot;==========协同========&quot;</span>
+<span class="n">multitask</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">conroutine_1</span><span class="p">())</span>
+<span class="n">multitask</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">conroutine_2</span><span class="p">())</span>
+<span class="n">multitask</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="k">print</span> <span class="s">&quot;==========多线程========&quot;</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">conroutine_3</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">())</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">conroutine_4</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">())</span>
+<span class="n">a</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+
+
+<p>上面的程序运行的结果可能是这样的：</p>
+<div class="codehilite"><pre><span class="o">==========</span>协同<span class="o">========</span>
+<span class="n">c1</span>
+<span class="n">c2</span>
+<span class="n">c1</span>
+<span class="n">c2</span>
+<span class="n">c1</span>
+<span class="n">c2</span>
+<span class="o">==========</span>多线程<span class="o">========</span>
+<span class="n">c3</span>
+<span class="n">c3c4</span>
+
+<span class="n">c3</span>
+<span class="n">c4</span>
+<span class="n">c4</span>
+</pre></div>
+
+
+<p>从结果来看，协同程序c1和c2依次执行，多线程的执行结果就不好说了，有多种可能</p>
+<p>下面的程序是用生成器形成的echo服务器</p>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">#coding=utf-8</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">with_statement</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">closing</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">multitask</span>
+<span class="k">def</span> <span class="nf">client_handler</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">socket</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span> <span class="n">multitask</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span><span class="mi">1024</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">yield</span> <span class="n">multitask</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">echo_server</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="n">port</span><span class="p">):</span>
+    <span class="n">addrinfo</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="n">port</span><span class="p">,</span>
+                                  <span class="n">socket</span><span class="o">.</span><span class="n">AF_UNSPEC</span><span class="p">,</span>
+                                  <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">family</span><span class="p">,</span><span class="n">socktype</span><span class="p">,</span><span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span><span class="n">sockaddr</span><span class="p">)</span><span class="o">=</span><span class="n">addrinfo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">family</span><span class="p">,</span><span class="n">socktype</span><span class="p">,</span><span class="n">proto</span><span class="p">))</span> <span class="k">as</span> <span class="n">sock</span><span class="p">:</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span><span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">sockaddr</span><span class="p">)</span>
+        <span class="n">sock</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">multitask</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">client_handler</span><span class="p">((</span><span class="k">yield</span> <span class="n">multitask</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">sock</span><span class="p">))[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">hostname</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="mi">1111</span>
+    <span class="n">multitask</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">echo_server</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="n">port</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">multitask</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+
+
+<p>上面的代码理解起来有点难度，我也有些地方不太懂，测试的话可以用telnet,方法是：</p>
+<p><code>telnet localhost 1111</code></p>
+<p>然后再输入一些信息，回车以后会显示你发送的信息。</p>
+<h3>itertools模块</h3>
+<h5>islice：窗口迭代器</h5>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">#coding=utf-8</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">def</span> <span class="nf">starting_at_five</span><span class="p">():</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;input1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">value</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span><span class="mi">4</span><span class="p">,</span><span class="bp">None</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">el</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;input2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="nb">iter</span> <span class="o">=</span> <span class="n">starting_at_five</span><span class="p">()</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="nb">iter</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</pre></div>
+
+
+<p>下面是一些测试输入输出：</p>
+<div class="codehilite"><pre><span class="n">input1</span><span class="o">:</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="n">input2</span><span class="o">:</span> <span class="mi">1</span> <span class="mi">2</span>    
+<span class="n">input2</span><span class="o">:</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="n">input2</span><span class="o">:</span> 
+</pre></div>
+
+
+<p>从上面的例子可以看出，上面的代码是输出第4个之后的元素，利用这个功能我们可以输出特定位置的元素</p>
+<h5>tee</h5>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">#coding=utf-8</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">def</span> <span class="nf">with_head</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span><span class="n">headsize</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">headsize</span><span class="p">)),</span><span class="n">b</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">with_head</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">with_head</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+
+<p>上面的代码我也没看懂，具体怎么用还需要进一步学习<br />
+代码运行结果是：<br />
+</p>
+<div class="codehilite"><pre><span class="p">[</span>1<span class="p">]</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="p">.</span><span class="n">tee</span> <span class="n">object</span> <span class="n">at</span> 0<span class="n">xb71f866c</span><span class="o">&gt;</span>
+<span class="p">[</span>1<span class="p">,</span> 2<span class="p">,</span> 3<span class="p">,</span> 4<span class="p">]</span> <span class="o">&lt;</span><span class="n">itertools</span><span class="p">.</span><span class="n">tee</span> <span class="n">object</span> <span class="n">at</span> 0<span class="n">xb71f862c</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<h5>uniq迭代器：</h5>
+<p>使用行程长度编码来压缩数据：将字符串中每组相邻的重复字符替换成字符本身的重复字数，没重复则为1,代码实现：</p>
+<div class="codehilite"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">#coding=utf-8</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="k">def</span> <span class="nf">compress</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)),</span><span class="n">name</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span><span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">decompress</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">car</span> <span class="o">*</span> <span class="n">size</span> <span class="k">for</span> <span class="n">size</span><span class="p">,</span><span class="n">car</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="nb">list</span><span class="p">(</span><span class="n">compress</span><span class="p">(</span><span class="s">&#39;aaasdffffffffffffffffffffff&#39;</span><span class="p">))</span>
+<span class="n">compressed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">compress</span><span class="p">(</span><span class="s">&#39;aaasdffffffffffffffffffffff&#39;</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed</span><span class="p">))</span>
+</pre></div>
+
+
+<p>运行结果：</p>
+<div class="codehilite"><pre><span class="k">[(3, &#39;a&#39;), (1, &#39;s&#39;), (1, &#39;d&#39;), (22, &#39;f&#39;)]</span>
+<span class="err">aaasdffffffffffffffffffffff</span>
+</pre></div>
+                </article>
+                
+            </aside><!-- /#featured -->
+            
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+            
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html" rel="bookmark"
+                           title="Permalink to 给python交互式命令行增加自动补全和命令历史">给python交互式命令行增加自动补全和命令历史</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-01-05T10:12:50.953722">
+                六 05 一月 2013
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/ma6174.html">ma6174</a>
+        </address>
+        
+<p>In <a href="./category/misc.html">misc</a>. </p>
+<p>tags: <a href="./tag/python.html">python</a><a href="./tag/zi-dong-bu-quan.html">自动补全</a><a href="./tag/ming-ling.html">命令</a></p>
+
+
+</footer><!-- /.post-info -->
+                <p>考完试了，开始研究《python高级编程》</p>
+<p>用过zsh的同学肯定对其自动补全功能印象深刻，通过简单的定制python交互式命令行也能实现类似功能，具体操作如下：</p>
+<ol>
+<li>在用户目录下新建".pythonstartup"文件，写入以下内容：</li>
+</ol>
+<div class="codehilite"><pre><span class="c"># python startup file</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">import</span> <span class="nn">rlcompleter</span>
+<span class="kn">import</span> <span class="nn">atexit</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c">#tab completion</span>
+<span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">&#39;tab: complete&#39;</span><span class="p">)</span>
+<span class="c">#history file</span>
+<span class="n">historyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;HOME&#39;</span><span class="p">],</span><span class="s">&#39;.pythonstartup&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">readline</span><span class="o">.</span><span class="n">read_history_file</span><span class="p">(</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">readline</span><span class="o">.</span><span class="n">write_history_file</span><span class="p">,</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">os ...</span></pre></div>
+                <a class="readmore" href="./gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                    <h1><a href="./cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html" rel="bookmark"
+                           title="Permalink to 操作系统词汇在线测试平台的实现">操作系统词汇在线测试平台的实现</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2012-11-29T09:42:42.412321">
                 四 29 十一月 2012
         </abbr>
@@ -58,71 +379,19 @@
 <p>tags: <a href="./tag/cao-zuo-xi-tong.html">操作系统</a><a href="./tag/zai-xian-ce-shi.html">在线测试</a></p>
 
 
-</footer><!-- /.post-info --><p><head><meta charset="UTF-8"></head></p>
+</footer><!-- /.post-info -->
+                <p><head><meta charset="UTF-8"></head></p>
 <h3>开发起因</h3>
 <p>前段时间提到我这个小草鸟破解了老师的软件,然后招到各位大牛的批评,好吧,我只能说我的水平还不到家。在课堂上展示了一下我的“破解”成果，专门做了一个幻灯片 <a href="http://www.rvl.io/ma6174/test">http://www.rvl.io/ma6174/test</a>，演示了一下幻灯片中提到的几种“破解”方式。很出乎我的意料，现场反映还是挺好的。老师也承诺发一个大奖，感觉老师有种谷歌的风范，谷歌曾经花重金请黑客破解它的浏览器，当然这是为了更好的改进它的浏览器，提升浏览器的安全性。由于我利用谢老师的软件的数据库没有密码的漏洞，实现提升权限的操作，这样系统就非常不安全。然后老师就修改了它的软件，虽然还是没有加密，可以随便修改，但是修改后程序能检测出来，然后就弹出错误消息禁止登录。当然实现这个功能不难，我不知道老师是怎么实现的，其中有个简单的方法就是计算数据库的md5,只要有任何的改动都能检测出来。其实数据库放在本地，使用完全独立客户端本身就是不安全的，如果是在浏览器上的话就不一样了，总结了一下，web版的有如下优点：
 - 不用安装任何客户端软件，打开浏览器就能在线测试
 - 数据库放在云端，增加安全性
 - 基于web，跨平台
 - 更方便地统计所有用户的成绩
-- 方便用户获取自己的排名</p>
-<h3>需求分析</h3>
-<p>需要实现的功能：</p>
-<ul>
-<li>
-<p>前端：
-    &gt; 首页：选择题目难度<br />
-      测试页面：展示题目，提供输入框，显示剩余时间，时间到自动提交，防止复制，防止粘贴<br />
-      成绩及答案页面：显示得分，排名，以及错题的正确答案<br />
-</p>
-</li>
-<li>
-<p>后台：
-    &gt; 数据库部分：题目入库，题目检索，获取答案，成绩入库，获取排名<br />
-      web页面部分：为测试页面提供题目，时间等数据，接收用户数据，判断用户答案是否正确，计算成绩，返回排名与正确答案,错误处理</p>
-</li>
-</ul>
-<h3>实现方案：</h3>
-<ul>
-<li>后台编程语言：python。因为python是一门全能语言，既能处理数据库应用，还能方便得处理事物联系，比如计算成绩。web模块也很强大<br />
-</li>
-<li>前台实现：主要是html，通过css美化，用javascript来实现计时和自动提交动作。<br />
-</li>
-<li>web框架：web.py。这是一个轻量级的web框架，可以很方便地构建小型web服务器并对外提供服务，一个类就是一个页面，每个页面有POST和GET两种方法。可以很方便获取用户输入<br />
-</li>
-<li>数据库：sqlite数据库，因为这个程序用到的数据很少，sqlite数据库采用单个文件来存放，管理方便，python自带其模块，使用也很简单，查询速度方面也是比较给力的。<br />
-</li>
-<li>模板引擎：jinja2。jinja2模板可以很方便的嵌入到html中，还可以实现一些判断，循环等操作来动态生成html代码。</li>
-</ul>
-<h3>具体实现</h3>
-<p>首先是题目入库，连接数据库，建表，从文本文件读取题目数据写入数据库。当web服务器启动后，初始页一个静态页面，可以选择题目难度，通过GET方法告诉服务器题目难度，然后服务器从数据库里面随机选出6个题目，根据难度和空数确定时间，通过jinja2模板填充页面数据，并返回测试页面。测试者开始做题，时间到或者测试者手动提交都会将测试者的答案提交到服务器，然后服务器对答案依次进行判断，并统计正确个数和错误答案，根据正确个数确定成绩，在根据成绩获取在系统里面的排名，一并将上面的信息返回。后台自动保存用户的成绩信息。测试者可以选择再测一次或者重新选择题目难度。</p>
-<h3>程序代码</h3>
-<p><a href="http://github.com/ma6174/osweb">http://github.com/ma6174/osweb</a></p>
-<h3>演示地址</h3>
-<p><a href="http://osweb.me.cc/">http://osweb.me.cc/</a></p>
-<h3>存在问题</h3>
-<ul>
-<li>在成绩页面点击浏览器后退按钮页面不能刷新</li>
-<li>排名页面只给出排名第几，没有具体排名列表</li>
-<li>页面还需要进一步美化</li>
-<li>没有提供后台管理页面</li>
-<li>如果用户禁用javascript则不能正常计时和自动提交（后台可以检测出来）</li>
-</ul>
-<h3>其他</h3>
-<ul>
-<li>前台美工：zcz</li>
-<li>后台实现：ma6174</li>
-</ul>
-                </article>
+- 方便用户获取自己的排名 ...</p>
+                <a class="readmore" href="./cao-zuo-xi-tong-ci-hui-zai-xian-ce-shi-ping-tai-de-shi-xian.html">read more</a>
                 
-            </aside><!-- /#featured -->
-            
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-            
-        
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
             

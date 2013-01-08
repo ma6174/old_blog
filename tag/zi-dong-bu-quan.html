@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>小码哥的新博客 - 自动补全</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href=".././theme/css/main.css" type="text/css" />
+        
+        <link href="http://ma6174.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="小码哥的新博客 Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie.css"/>
+                <script src=".././js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href=".././css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href="../.">小码哥的新博客 </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href=".././category/misc.html">misc</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+
+            
+
+        
+        
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href=".././gei-pythonjiao-hu-shi-ming-ling-xing-zeng-jia-zi-dong-bu-quan-he-ming-ling-li-shi.html">给python交互式命令行增加自动补全和命令历史</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2013-01-05T10:12:50.953722">
+                六 05 一月 2013
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/ma6174.html">ma6174</a>
+        </address>
+        
+<p>In <a href=".././category/misc.html">misc</a>. </p>
+<p>tags: <a href=".././tag/python.html">python</a><a href=".././tag/zi-dong-bu-quan.html">自动补全</a><a href=".././tag/ming-ling.html">命令</a></p>
+
+
+</footer><!-- /.post-info --><p>考完试了，开始研究《python高级编程》</p>
+<p>用过zsh的同学肯定对其自动补全功能印象深刻，通过简单的定制python交互式命令行也能实现类似功能，具体操作如下：</p>
+<ol>
+<li>在用户目录下新建".pythonstartup"文件，写入以下内容：</li>
+</ol>
+<div class="codehilite"><pre><span class="c"># python startup file</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">import</span> <span class="nn">rlcompleter</span>
+<span class="kn">import</span> <span class="nn">atexit</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="c">#tab completion</span>
+<span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">&#39;tab: complete&#39;</span><span class="p">)</span>
+<span class="c">#history file</span>
+<span class="n">historyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;HOME&#39;</span><span class="p">],</span><span class="s">&#39;.pythonstartup&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">readline</span><span class="o">.</span><span class="n">read_history_file</span><span class="p">(</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">readline</span><span class="o">.</span><span class="n">write_history_file</span><span class="p">,</span><span class="n">historyfile</span><span class="p">)</span>
+<span class="k">del</span> <span class="n">os</span><span class="p">,</span><span class="n">historyfile</span><span class="p">,</span><span class="n">readline</span><span class="p">,</span><span class="n">rlcompleter</span>
+</pre></div>
+
+
+<ul>
+<li>增加环境变量，编辑.bashrc或.zshrc文件（根据你的shell确定），加入以下内容：</li>
+</ul>
+<div class="codehilite"><pre><span class="nb">export </span><span class="nv">PYTHONSTARTUP</span><span class="o">=</span><span class="s2">&quot;/home/ma6174/.pythonstartup&quot;</span>
+</pre></div>
+
+
+<ul>
+<li>从新打开终端，进入python交互式命令行界面试一下。下面是我的运行效果截图：
+<img alt="pythonstartup" src="../static/pythonstartup.png" /></li>
+</ul>
+                </article>
+                
+                    
+<p class="paginator">
+    
+    Page 1 / 1
+    
+</p>
+
+                
+            </aside><!-- /#featured -->
+            
+        
+        
+        
+            </ol><!-- /#posts-list -->
+            
+            </section><!-- /#content -->
+        
+    
+
+
+        <section id="extras" class="body">
+        
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                        
+                            <li><a href="http://note.sdo.com/u/ma6174/n/M5cEN~k08XowLX0Ts000vQ">麦库</a></li>
+                        
+                            <li><a href="http://ma6174.ys168.com">网盘</a></li>
+                        
+                        </ul>
+                </div><!-- /.blogroll -->
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://ma6174.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="674108687">qq</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
